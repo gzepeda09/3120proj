@@ -8,8 +8,9 @@ transmission rate: 70%
 """
 
 import random
+import numpy as np
 
-passenger = random.randrange(300,350,1)
+# passenger = random.randrange(300,350,1)
 mrate = 0.20
 ltime: 2
 dinf = 7
@@ -21,6 +22,10 @@ name_lst = ['350', '275', '312',
   
 print(random.choices(name_lst, weights=(
     70, 70, 70, 70, 70, 70), k=1))
+
+flights = np.loadtxt("2dm.txt", dtype=int)
+print(flights[0])
+
 
 
 exit()
