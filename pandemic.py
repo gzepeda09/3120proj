@@ -21,88 +21,108 @@ flights = { 'San Francisco': ['Los Angeles', 'Phoenix', 'Las Vegas', 'Portland',
  'Salt Lake City': ['San Francisco','Phoenix','Houston','Portland','Seattle','Kansas City'],
  'Kansas City': ['Houston','New York City','Salt Lake City']}
 
+poplt = { 'San Francisco': 3318000,
+ 'Los Angeles': 12488000,
+ 'Phoenix': 4652000,
+ 'Las Vegas': 2839000,
+ 'Houston': 6603000,
+ 'Miami': 6215000,
+ 'New York City': 18867000,
+ 'Atlanta': 5100000,
+ 'Portland': 2197000,
+ 'Seattle': 3489000,
+ 'Chicago': 8901000,
+ 'Nashville': 1294000,
+ 'Boston': 4327000,
+ 'Philedelphia': 5756000,
+ 'Detroit': 3521000,
+ 'Milwaukee': 1448000,
+ 'Salt Lake City': 1192000,
+ 'Kansas City': 1711000}
+
 flightpath = []
 count = 0
 
-IR = 0.7
+IR = 0.6
 nIR = 0.3
 passengers = random.randrange(330,380)
-E = int(passengers * IR)
-V = int(E * nIR)
+E = int(passengers * IR) 
+V = int(E * nIR) 
 LB = int(E - V)
 UB = int(E + V)
 infected = random.randrange(LB, UB)
 population = 0
 
 cities = list(flights.keys())
-Rcity = random.choice(cities)
+# Rcity = random.choice(cities)
 
 Pstart = random.choice(cities)
 flightpath.append(Pstart)
 
-if Pstart == 'San Francisco':
+if Pstart == 'San Francisco': # Higher chance to close
   nxtcity = str(random.choices(flights[Pstart], weights=(40,5,20,15,15,5), k=1))
-  population = 3318000
-elif Pstart == 'Los Angeles':
+  population = poplt[nxtcity.strip("['']")]
+elif Pstart == 'Los Angeles': # Higher Chance to close
   nxtcity = str(random.choices(flights[Pstart], weights=(8,5,12,15,15,20,12,3,5,5), k=1))
-  population = 12488000
-elif Pstart == 'Phoenix':
+  population = poplt[nxtcity.strip("['']")] 
+elif Pstart == 'Phoenix': # Higher Chance to close
   nxtcity = str(random.choices(flights[Pstart], weights=(15,30,20,30,5), k=1))
-  population = 4652000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Las Vegas':
   nxtcity = str(random.choices(flights[Pstart], weights=(10,25,10,15,12,20,8), k=1))
-  population = 2839000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Houston':
   nxtcity = str(random.choices(flights[Pstart], weights=(15,6,10,15,15,10,4,10,5,5,5), k=1))
-  population = 6603000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Miami':
   nxtcity = str(random.choices(flights[Pstart], weights=(15,5,15,15,20,10,5,5,5,5), k=1))
-  population = 6215000
-elif Pstart == 'New York City':
+  population = poplt[nxtcity.strip("['']")] 
+elif Pstart == 'New York City': # Higher Chance to close
   nxtcity = str(random.choices(flights[Pstart], weights=(15,10,15,10,10,7,10,7,6,5,5), k=1))
-  population = 18867000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Atlanta':
   nxtcity = str(random.choices(flights[Pstart], weights=(15,15,20,15,30,5), k=1))
-  population = 5100000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Portland':
   nxtcity = str(random.choices(flights[Pstart], weights=(30,20,30,20), k=1))
-  population = 2197000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Seattle':
   nxtcity = str(random.choices(flights[Pstart], weights=(50,30,20), k=1))
-  population = 3489000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Chicago':
   nxtcity = str(random.choices(flights[Pstart], weights=(20,30,20,30), k=1))
-  population = 8901000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Nashville':
   nxtcity = str(random.choices(flights[Pstart], weights=(15,35,35,15), k=1))
-  population = 1294000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Boston':
   nxtcity = str(random.choices(flights[Pstart], weights=(80,20), k=1))
-  population = 4327000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Philedelphia':
   nxtcity = str(random.choices(flights[Pstart], weights=(20,15,30,20,10,5), k=1))
-  population = 5756000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Detroit':
   nxtcity = str(random.choices(flights[Pstart], weights=(70,10,20), k=1))
-  population = 3521000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Milwaukee':
   nxtcity = str(random.choices(flights[Pstart], weights=(40,60), k=1))
-  population = 1448000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Salt Lake City':
   nxtcity = str(random.choices(flights[Pstart], weights=(20,10,30,15,15,10), k=1))
-  population = 1192000
+  population = poplt[nxtcity.strip("['']")] 
 elif Pstart == 'Kansas City':
   nxtcity = str(random.choices(flights[Pstart], weights=(40,40,20), k=1))
-  population = 1711000
+  population = poplt[nxtcity.strip("['']")] 
 else:
   nxtcity = str(random.choice(flights[Pstart]))
 flightpath.append(nxtcity.strip("['']"))
 
 popfrac = infected/population
 
+# SIR Model
 ndays = 100
 dt = 1                           #time step in days
-beta = (7.0/10.0)                 #infection rate
+beta = (6.0/10.0)                 #infection rate
 gamma = (2.25/10.0)               #recovery rate  
 
 S = np.zeros(ndays)             #susceptible population
@@ -123,7 +143,7 @@ fig = plt.figure(1); fig.clf()
 plt.plot(t,S,'r',lw=3, label='Suceptible')
 plt.plot(t,I,'g',lw=3, label='Infected')
 plt.plot(t,R,'b',lw=3, label='Recovered')
-fig.legend(); plt.xlabel('Days'); plt.ylabel('Fraction of Population'); fig.suptitle(Pstart)
+fig.legend(); plt.xlabel('Days'); plt.ylabel('Fraction of Population'); fig.suptitle(nxtcity)
 print(I.max())
 print("The initial number of infected is")
 print(infected)
