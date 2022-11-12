@@ -117,6 +117,51 @@ else:
   nxtcity = str(random.choice(flights[Pstart]))
 flightpath.append(nxtcity.strip("['']"))
 
+currentcity = nxtcity
+
+while count < 14:
+  if currentcity.strip("['']") == 'San Francisco':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(30,10,20,15,15,10), k=1))
+  elif currentcity.strip("['']") == 'Los Angeles':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(8,5,12,15,15,20,12,3,5,5), k=1))
+  elif currentcity.strip("['']") == 'Phoenix':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(15,30,20,30,5), k=1))
+  elif currentcity.strip("['']") == 'Las Vegas':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(10,25,10,15,12,20,8), k=1))
+  elif currentcity.strip("['']") == 'Houston':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(15,6,10,15,15,10,4,10,5,5,5), k=1))
+  elif currentcity.strip("['']") == 'Miami':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(15,5,15,15,20,10,5,5,5,5), k=1))
+  elif currentcity.strip("['']") == 'New York City':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(15,10,15,10,10,7,10,7,6,5,5), k=1))
+  elif currentcity.strip("['']") == 'Atlanta':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(15,15,20,15,30,5), k=1))
+  elif currentcity.strip("['']") == 'Portland':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(30,20,30,20), k=1))
+  elif currentcity.strip("['']") == 'Seattle':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(50,30,20), k=1))
+  elif currentcity.strip("['']") == 'Chicago':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(20,30,20,30), k=1))
+  elif currentcity.strip("['']") == 'Nashville':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(15,35,35,15), k=1))
+  elif currentcity.strip("['']") == 'Boston':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(65,35), k=1))
+  elif currentcity.strip("['']") == 'Philedelphia':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(20,15,30,20,10,5), k=1))
+  elif currentcity.strip("['']") == 'Detroit':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(50,20,30), k=1))
+  elif currentcity.strip("['']") == 'Milwaukee':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(40,60), k=1))
+  elif currentcity.strip("['']") == 'Salt Lake City':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(20,10,30,15,15,10), k=1))
+  elif currentcity.strip("['']") == 'Kansas City':
+    nxtcity = str(random.choices(flights[currentcity.strip("['']")], weights=(40,40,20), k=1))
+  else:
+    print("error!")
+  flightpath.append(nxtcity.strip("['']"))
+  currentcity = nxtcity
+  count += 1
+
 popfrac = infected/population
 
 # SIR Model
